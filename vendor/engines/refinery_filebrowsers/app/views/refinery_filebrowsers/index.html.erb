@@ -1,0 +1,11 @@
+<% content_for :body_content_left do %>
+  <ul id="refinery_filebrowsers">
+    <% @refinery_filebrowsers.each do |refinery_filebrowser| %>
+      <li>
+        <%= link_to refinery_filebrowser.name, refinery_filebrowser_url(refinery_filebrowser) %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= render :partial => "/shared/content_page" %>

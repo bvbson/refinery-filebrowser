@@ -1,0 +1,19 @@
+nl:
+  plugins:
+    refinery_filebrowsers:
+      title: Refinery Filebrowsers
+  admin:
+    refinery_filebrowsers:
+      index:
+        create_new: Maak een nieuwe Refinery Filebrowser
+        reorder: Wijzig de volgorde van de Refinery Filebrowsers
+        reorder_done: Klaar met het wijzingen van de volgorde van de Refinery Filebrowsers
+        sorry_no_results: Helaas! Er zijn geen resultaten gevonden.
+        no_items_yet: Er zijn nog geen Refinery Filebrowsers. Druk op 'Maak een nieuwe Refinery Filebrowser' om de eerste aan te maken.
+      refinery_filebrowser:
+        view_live: Bekijk deze refinery filebrowser op de website <br/><em>(opent een nieuw venster)</em>
+        edit: Bewerk deze refinery filebrowser
+        delete: Verwijder deze refinery filebrowser voor eeuwig
+  refinery_filebrowsers:
+    show:
+      other: Andere Refinery Filebrowsers

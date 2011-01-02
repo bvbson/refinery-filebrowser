@@ -1,0 +1,34 @@
+<% form_for [:admin, @refinery_filebrowser] do |f| -%>
+  <%= render :partial => "/shared/admin/error_messages", :locals => {
+    :object => @refinery_filebrowser,
+    :include_object_name => true
+  } %>
+  
+  <div class='field'>
+    <%= f.label :name -%>
+    <%= f.text_field :name, :class => 'larger widest' -%>
+  </div>
+  
+  <div class='field'>
+    <%= f.label :parent_id -%>
+    <%= f.text_field :parent_id -%>
+  </div>
+  
+  <div class='field'>
+    <%= f.label :lft -%>
+    <%= f.text_field :lft -%>
+  </div>
+  
+  <div class='field'>
+    <%= f.label :rgt -%>
+    <%= f.text_field :rgt -%>
+  </div>
+  
+  <%= render :partial => "/shared/admin/form_actions",
+              :locals => {
+                :f => f,
+                :continue_editing => false,
+                :delete_title => t('admin.refinery_filebrowsers.refinery_filebrowser.delete'),
+                :delete_confirmation => t('shared.admin.delete.message', :title => @refinery_filebrowser.name)
+              } %>
+<% end -%>
