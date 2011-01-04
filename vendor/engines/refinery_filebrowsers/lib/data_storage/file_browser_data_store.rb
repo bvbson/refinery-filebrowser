@@ -1,16 +1,24 @@
+require 'pathname'
 
-class FileBrowserDataStore
+module Dragonfly
+  module DataStorage
 
-  def store(temp_object)
+    class FileBrowserDataStore
 
+      include Configurable
+
+      def store(temp_object)
+
+      end
+
+      def retrieve(uid)
+
+      end
+
+      def destroy(uid)
+
+      end
+
+    end
   end
-
-  def retrieve(uid)
-
-  end
-
-  def destroy(uid)
-
-  end
-
 end

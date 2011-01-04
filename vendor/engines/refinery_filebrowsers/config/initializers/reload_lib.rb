@@ -1,4 +1,5 @@
-puts file = File.join(Rails.root, 'vendor', 'engines', 'refinery-filebrowsers', 'lib', 'imagefly_app.rb')
+file = File.join(Rails.root, 'vendor', 'engines', 'refinery-filebrowsers', 'lib', 'imagefly_app.rb')
+
 if Rails.env == "development"
   lib_reloader = ActiveSupport::FileUpdateChecker.new(Dir["#{file}"], true) do
     Rails.application.config.autoload_paths << file

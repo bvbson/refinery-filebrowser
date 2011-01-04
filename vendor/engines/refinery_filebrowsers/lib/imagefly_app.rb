@@ -5,7 +5,7 @@ class ImageflyApp < ActionController::Metal
 
   def index
     @parent = params[:dir] ||= "."
-    puts @parent
+    #puts @parent
     connect_s3
     bucket = Bucket.find("skeller")
     @paths = []

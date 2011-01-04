@@ -17,7 +17,7 @@ module Refinery
         app_filebrowser.configure_with(:imagemagick)
         app_filebrowser.configure_with(:rails) do |c|
           if RefinerySetting.table_exists?
-            c.datastore = FileBrowserDataStore.new
+            #c.datastore = Dragonfly::DataStorage::FileBrowserDataStore.new
             c.protect_from_dos_attacks = true
             c.secret = RefinerySetting.find_or_set(:dragonfly_secret,
               Array.new(24) { rand(256) }.pack('C*').unpack('H*').first)

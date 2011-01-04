@@ -14,7 +14,6 @@ class RefineryFilebrowser < ActiveRecord::Base
     @path = File.join(File.expand_path(@root), path)
     @dirs = []
     @files = []
-    puts Dir.entries(@path).class
     if File.exists?(@path)
       Dir.entries(@path).delete_if {|i| /(^\..*)/.match i }.each do |entry|
         if File.directory?(File.join(@path, entry))
