@@ -1,9 +1,6 @@
 class RefineryFilebrowser < ActiveRecord::Base
 
   acts_as_indexed :fields => [:name]
-  
-  validate :name, :presence => true, :uniqueness => true
-
 
   def initialize(root)
     @root = root
@@ -24,6 +21,6 @@ class RefineryFilebrowser < ActiveRecord::Base
         end
       end
     end
-    [@dirs,@files]
+    {:dirs => @dirs, :files => @files }
   end
 end

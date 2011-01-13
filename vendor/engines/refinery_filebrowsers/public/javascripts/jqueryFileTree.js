@@ -57,7 +57,10 @@ if(jQuery) (function($){
                                                 } else {
                                                     $('#selected_directory').html(escape(t));
                                                 }
+
+                                                //split data
                                                 $(c).find('.start').html('');
+                                                //$(data);
 						$(c).removeClass('wait').append(data);
 						if( o.root == t ) $(c).find('UL:hidden').show(); else $(c).find('UL:hidden').slideDown({duration: o.expandSpeed, easing: o.expandEasing});
 						bindTree(c);

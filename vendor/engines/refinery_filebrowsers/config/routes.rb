@@ -1,13 +1,9 @@
 Refinery::Application.routes.draw do
-  resources :refinery_filebrowsers
+  match '/media/(*dragonfly)', :to => Dragonfly[:filebrowser]
 
   scope(:path => 'refinery', :as => 'admin', :module => 'admin') do
-    resources :refinery_filebrowsers do
-      collection do
-        post :update_positions
-        post :get_tree
+      resources :refinery_filebrowsers, :only => [:index] do
+        post :get_tree, :on => :collection
       end
-    end
-    match '/filebrowser' => "refineryFilebrowsers#index"
   end
 end

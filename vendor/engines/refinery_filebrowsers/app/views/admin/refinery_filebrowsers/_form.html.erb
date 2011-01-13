@@ -3,27 +3,27 @@
     :object => @refinery_filebrowser,
     :include_object_name => true
   } %>
-  
+
   <div class='field'>
     <%= f.label :name -%>
     <%= f.text_field :name, :class => 'larger widest' -%>
   </div>
-  
+
   <div class='field'>
     <%= f.label :parent_id -%>
     <%= f.text_field :parent_id -%>
   </div>
-  
+
   <div class='field'>
     <%= f.label :lft -%>
     <%= f.text_field :lft -%>
   </div>
-  
+
   <div class='field'>
     <%= f.label :rgt -%>
     <%= f.text_field :rgt -%>
   </div>
-  
+
   <%= render :partial => "/shared/admin/form_actions",
               :locals => {
                 :f => f,

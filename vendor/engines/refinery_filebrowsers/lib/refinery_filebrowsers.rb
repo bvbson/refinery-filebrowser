@@ -2,8 +2,7 @@ require 'rack/cache'
 require 'dragonfly'
 require 'refinery'
 require 'imagefly_app'
-require 'data_storage/file_browser_data_store'
-require 'data_storage/file_browser_s3_data_store'
+require 'analysis/filebrowser_analyser'
 
 module Refinery
   module RefineryFilebrowsers
@@ -30,8 +29,9 @@ module Refinery
           end
         end
 
-        app_filebrowser.analyser.register(Dragonfly::Analysis::ImageMagickAnalyser)
-        app_filebrowser.analyser.register(Dragonfly::Analysis::FileCommandAnalyser)
+        app_filebrowser.analyser.register(FileBrowserAnalyser)
+        #app_filebrowser.analyser.register(Dragonfly::Analysis::ImageMagickAnalyser)
+        #app_filebrowser.analyser.register(Dragonfly::Analysis::FileCommandAnalyser)
 
         # This url_suffix makes it so that dragonfly urls work in traditional
         # situations where the filename and extension are required, e.g. lightbox.
@@ -41,10 +41,13 @@ module Refinery
         # /system/images/BAhbB1sHOgZmIiMyMDEwLzA5LzAxL1NTQ19DbGllbnRfQ29uZi5qcGdbCDoGcDoKdGh1bWIiDjk0MngzNjAjYw/refinery_is_awesome.jpg
         # Officially the way to do it, from: http://markevans.github.com/dragonfly/file.URLs.html
         app_filebrowser.url_suffix = proc{|job|
-          "/#{job.uid_basename}#{job.encoded_extname || job.uid_extname}"
+          "/#{Time.now.year}_#{Time.now.month}_#{Time.now.day}_#{job.encoded_extname || job.uid_extname}"
+        }
+        app_filebrowser.content_filename = proc{|job,response|
+          "#{Time.now.year}_#{Time.now.month}_#{Time.now.day}_.#{job.ext}"
         }
 
-        app.config.middleware.insert_after 'Rack::Lock', 'Dragonfly::Middleware', :images, '/system/dragonfly'
+        app.config.middleware.insert_after 'Rack::Lock', 'Dragonfly::Middleware', :filebrowser, '/system/dragonfly'
 
         app.config.middleware.insert_before 'Dragonfly::Middleware', 'Rack::Cache', {
           :verbose     => Rails.env.development?,
@@ -52,7 +55,7 @@ module Refinery
           :entitystore => "file:#{Rails.root.join('tmp', 'dragonfly', 'cache', 'body')}"
         }
       end
-      
+
 
       config.after_initialize do
         Refinery::Plugin.register do |plugin|
