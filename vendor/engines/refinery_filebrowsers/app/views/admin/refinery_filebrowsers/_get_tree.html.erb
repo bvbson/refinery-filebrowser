@@ -1,5 +1,5 @@
 <ul class="jqueryFileTree" style="display: none;">
-  <% @tree[:dirs].each do |dir| %>
+  <% @dirs.each do |dir| %>
     <li class="directory collapsed">
       <a href="#" class="directory" rel="<%=@parent+dir %>/"><%= dir %></a></li>
   <%end%>
@@ -11,6 +11,6 @@
   <% end %>
 </ul>
 
-<% @image_urls.each do |url| %>
-  <%= image_tag url %>
-<% end %>
+<%# @image_urls.each do |url| %>
+  <%#= image_tag url %>
+<%# end %>

@@ -12,23 +12,26 @@ class Admin::RefineryFilebrowsersController < Admin::BaseController
   def get_tree
     @parent = params[:dir] ||= "."
     selected_directory = "public/"+@parent
-    @tree = RefineryFilebrowser.new(selected_directory).get_tree
+    tree = RefineryFilebrowser.new(selected_directory).get_tree
 
+    @dirs = tree[:dirs]
+    @files = tree[:files]
 
     app = Dragonfly::App[:filebrowser]
-    @image_urls = Array.new
-    
-    @tree[:files].each do |file|
-      #job = app.fetch_file(File.join(Rails.root,selected_directory,file))
-      uid = app.store(File.new(File.join(Rails.root,selected_directory,file)))
-      job = app.fetch(uid)
-      if job.image?
-        @image_urls << job.process(:thumb, "56x56>").url
-      end
+    @file_urls = Array.new
 
-        #if job.image?
-      #  @image_urls << job.process(:thumb, "56x56>").url
-      #end
+    #@tree[:files].each do |file|
+    
+    @files.each do |file|
+      job = app.fetch_file(File.join(Rails.root,selected_directory,file))
+      #uid = app.store(File.new(File.join(Rails.root,selected_directory,file)))
+      #job = app.fetch(uid)
+
+      if job.image?
+        @file_urls << job.process(:thumb, "56x56>").url
+      else
+        @file_urls << job.url
+      end
     end
 
     render :partial => 'get_tree'

@@ -3,6 +3,7 @@ require 'dragonfly'
 require 'refinery'
 require 'imagefly_app'
 require 'analysis/filebrowser_analyser'
+require 'model/filebrowser'
 
 module Refinery
   module RefineryFilebrowsers
@@ -28,6 +29,9 @@ module Refinery
             c.datastore = FilebrowserS3DataStore.new
           end
         end
+
+        app_filebrowser.define_macro(FileBrowserModel, :file_accessor)
+
 
         app_filebrowser.analyser.register(FileBrowserAnalyser)
         #app_filebrowser.analyser.register(Dragonfly::Analysis::ImageMagickAnalyser)

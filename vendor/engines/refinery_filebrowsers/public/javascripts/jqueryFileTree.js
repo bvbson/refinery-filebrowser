@@ -52,6 +52,7 @@ if(jQuery) (function($){
                                         $(c).addClass('wait');
 					$(".jqueryFileTree.start").remove();
 					$.post(o.script, {dir: t}, function(data) {
+                                            alert(data);
                                                 if( o.root == t ) {
                                                     $('#selected_directory').html("/");
                                                 } else {

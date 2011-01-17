@@ -1,19 +1,33 @@
-class RefineryFilebrowser <FileBrowserModel
+class RefineryFile < FileBrowserModel
 
-  def initialize(root)
-    @root = root
+  #attr_accessor :cover_image, :cover_image_uid
+
+  #delegate :size, :mime_type, :url, :width, :height, :to => :cover_image
+
+  
+  file_accessor :cover_image
+
+  def initialize(attributes = {})
+    attributes.each do |name,value|
+      send("#{name}", value)
+    end
   end
 
+  def persisted?
+    false
+  end
 
-  file_accessor :file
-
-  def file_uid=
+  def cover_image=
     #puts "skeller write"
     # ...
   end
 
-  def file_uid
+  def cover_image
     #puts "skeller read"
+  end
+
+  def skeller?
+    true
   end
 
   
