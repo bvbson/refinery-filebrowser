@@ -1,23 +1,10 @@
-class RefineryFilebrowser <FileBrowserModel
+class RefineryFilebrowser < ActiveRecord::Base
 
   def initialize(root)
     @root = root
   end
 
-
-  file_accessor :file
-
-  def file_uid=
-    #puts "skeller write"
-    # ...
-  end
-
-  def file_uid
-    #puts "skeller read"
-  end
-
-  
-  def get_tree(path=".")
+  def get_content(path=".")
     path = "" if path.nil?
     @path = File.join(File.expand_path(@root), path)
     @dirs = []
@@ -34,4 +21,5 @@ class RefineryFilebrowser <FileBrowserModel
     end
     {:dirs => @dirs, :files => @files }
   end
+
 end

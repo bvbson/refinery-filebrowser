@@ -1,7 +1,5 @@
 class FileBrowserModel
-  include ActiveModel::Validations
   extend ActiveModel::Callbacks
-  extend ActiveModel::Naming
 
   define_model_callbacks :save, :destroy
 

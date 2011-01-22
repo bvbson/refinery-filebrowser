@@ -1,24 +1,17 @@
 require 'pathname'
 
-module Dragonfly
-  module DataStorage
-
-    class FileBrowserDataStore
-
-      include Configurable
+class FileBrowserDataStore < Dragonfly::DataStorage::FileDataStore
 
       def store(temp_object)
 
       end
 
-      def retrieve(uid)
-
+      def retrieve(path)
+        File.new(path)
       end
 
       def destroy(uid)
 
       end
 
-    end
-  end
 end

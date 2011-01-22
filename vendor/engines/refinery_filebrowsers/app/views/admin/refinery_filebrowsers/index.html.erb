@@ -1,5 +1,5 @@
 <% content_for :head do %>
-  <%= javascript_include_tag "jquery.js", "jquery.easing.js", "jqueryFileTree.js" %>
+  <%= javascript_include_tag "jquery.easing.js", "jqueryFileTree.js" %>
   <%= stylesheet_link_tag "jqueryFileTree.css" %>
   <style type="text/css">
     #selected_directory {
@@ -20,6 +20,12 @@
   <script type="text/javascript">
     //<![CDATA[
     $(document).ready(function(){
+
+      $('a[data-popup]').live('click', function(e) {
+        window.open($(this)[0].href, "skeller", "width=640,height=480,left=100,top=200");
+        e.preventDefault();
+      });
+
       $('#fileTree').fileTree({
         root: '',
         script: '<%= get_tree_admin_refinery_filebrowsers_path %>',

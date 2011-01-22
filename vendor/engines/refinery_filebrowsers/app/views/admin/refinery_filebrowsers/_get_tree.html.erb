@@ -3,14 +3,23 @@
     <li class="directory collapsed">
       <a href="#" class="directory" rel="<%=@parent+dir %>/"><%= dir %></a></li>
   <%end%>
-  <% @tree[:files].each do |file|%>
-    <li class="file ext_<%=File.extname(file)[1..-1] %>">
-      <a href="#" rel="<%=@parent+file %>"><%= file %></a>
-      <a><%#= image_tag  ,:alt => file %></a>
+  <% @files.each do |file|%>
+    <li class="file ext_<%= file.file.format %>">
+      <%= file.file.name %>
+      <% link_to(admin_refinery_filebrowser_path(:id => CGI::escape(@parent+file.file.name)),
+        :"data-popup" => true,
+        :rel => @parent+file.file.name) do %>
+        Info
+        <% if file.file.image? %>
+          <%= file.file.width  %>x<%= file.file.height %>
+        <% end %>
+
+      <% end %>
+      <!-- <a>
+      <% if file.file.image? %>
+        <%= image_tag file.file.thumb("56x56").url  ,:alt => file.file.name %>
+      <% end %>
+       </a>-->
     </li>
   <% end %>
 </ul>
-
-<%# @image_urls.each do |url| %>
-  <%#= image_tag url %>
-<%# end %>

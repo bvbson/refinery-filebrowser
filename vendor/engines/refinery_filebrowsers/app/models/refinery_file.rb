@@ -1,37 +1,23 @@
 class RefineryFile < FileBrowserModel
 
-  #attr_accessor :cover_image, :cover_image_uid
+  file_accessor :file
 
-  #delegate :size, :mime_type, :url, :width, :height, :to => :cover_image
 
-  
-  file_accessor :cover_image
+  alias :data :file
 
-  def initialize(attributes = {})
-    attributes.each do |name,value|
-      send("#{name}", value)
-    end
+  def initialize(file_path)
+    @file = file_path
   end
 
-  def persisted?
-    false
+  def file_uid=(file_path)
+    @file = file_path
   end
 
-  def cover_image=
-    #puts "skeller write"
-    # ...
+  def file_uid
+    @file
   end
-
-  def cover_image
-    #puts "skeller read"
-  end
-
-  def skeller?
-    true
-  end
-
-  
-  def get_tree(path=".")
+ 
+  def get_content(path=".")
     path = "" if path.nil?
     @path = File.join(File.expand_path(@root), path)
     @dirs = []
@@ -47,5 +33,19 @@ class RefineryFile < FileBrowserModel
       end
     end
     {:dirs => @dirs, :files => @files }
+  end
+
+
+  private
+
+  def root
+    if RefinerySetting.table_exists?
+      RefinerySetting.find_or_set(
+        :filebrowser_root,
+        DEFAULT
+      )
+    else
+      DEFAULT
+    end
   end
 end

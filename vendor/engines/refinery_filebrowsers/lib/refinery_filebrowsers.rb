@@ -3,6 +3,7 @@ require 'dragonfly'
 require 'refinery'
 require 'imagefly_app'
 require 'analysis/filebrowser_analyser'
+require 'data_storage/file_browser_data_store'
 require 'model/filebrowser'
 
 module Refinery
@@ -16,8 +17,8 @@ module Refinery
         app_filebrowser = Dragonfly::App[:filebrowser]
         app_filebrowser.configure_with(:imagemagick)
         app_filebrowser.configure_with(:rails) do |c|
+          c.datastore = FileBrowserDataStore.new
           if RefinerySetting.table_exists?
-            #c.datastore = Dragonfly::DataStorage::FileBrowserDataStore.new
             c.protect_from_dos_attacks = true
             c.secret = RefinerySetting.find_or_set(:dragonfly_secret,
               Array.new(24) { rand(256) }.pack('C*').unpack('H*').first)

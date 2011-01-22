@@ -52,7 +52,7 @@ if(jQuery) (function($){
                                         $(c).addClass('wait');
 					$(".jqueryFileTree.start").remove();
 					$.post(o.script, {dir: t}, function(data) {
-                                            alert(data);
+                                            //alert(data);
                                                 if( o.root == t ) {
                                                     $('#selected_directory').html("/");
                                                 } else {
@@ -88,12 +88,12 @@ if(jQuery) (function($){
                                                                 $('#selected_directory').html("above now");
 							}
 						} else {
-							h($(this).attr('rel'));
+							//h($(this).attr('rel'));
 						}
-						return false;
+						//return false;
 					});
 					// Prevent A from triggering the # on non-click events
-					if( o.folderEvent.toLowerCase != 'click' ) $(t).find('LI A').bind('click', function() {return false;});
+					//if( o.folderEvent.toLowerCase != 'click' ) $(t).find('LI A').bind('click', function() {return false;});
 				}
 				// Loading message
 				$(this).html('<ul class="jqueryFileTree start"><li class="wait">' + o.loadMessage + '<li></ul>');

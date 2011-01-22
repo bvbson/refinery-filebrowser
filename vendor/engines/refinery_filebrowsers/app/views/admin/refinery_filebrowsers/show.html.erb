@@ -1,0 +1,39 @@
+<% content_for :head do %>
+  <%= stylesheet_link_tag "jqueryFileTree.css" %>
+  <%= javascript_include_tag "jquery.js" %>
+  <script type="text/javascript">
+    //<![CDATA[
+    $(document).ready(function(){
+      $('a[data-popup]').live('click', function(e) {
+        window.open($(this)[0].href);
+        e.preventDefault();
+      });
+    });
+    //]]>
+  </script>
+<% end %>
+
+<ul class="jqueryfileTree">
+  <li class="file ext_<%= @file.file.format %>">
+    <%= link_to @file.file.url , :"data-popup" => true do %>
+      <ul>
+        <li>File: <%= @file.file.name %></li>
+        <li>Size: <%= number_to_human_size @file.file.size %></li>
+        <% if @file.file.image? %>
+          <li>Dimensions: <%= @file.file.width  %>x<%= @file.file.height %></li>
+        <% end %>
+      </ul>
+    <% end %>
+  </li>
+
+  <% if @file.file.image? %>
+    <li style="text-align:center; margin-top:2em;">
+      <%= link_to(image_tag(@file.file.thumb("320x240>").url), @file.file.url , :"data-popup" => true) %>
+    </li>
+  <% end %>
+
+</ul>
+
+
+
+
