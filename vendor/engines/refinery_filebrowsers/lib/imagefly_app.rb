@@ -23,8 +23,8 @@ class ImageflyApp < ActionController::Metal
   def connect_s3
     begin
       Base.establish_connection!(
-        :access_key_id => 'AKIAJ5LGOY6LQWGMRUGQ',
-        :secret_access_key => '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'
+        :access_key_id => '',
+        :secret_access_key => ''
       )
       puts "Established connection to Amazon S3"
     rescue
