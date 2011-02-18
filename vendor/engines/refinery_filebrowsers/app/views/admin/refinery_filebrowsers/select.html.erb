@@ -1,0 +1,83 @@
+<% content_for :head do %>
+  <%= javascript_include_tag "jquery", "jquery.easing", "jqueryFileTree", "jquery.checkboxes.js" %>
+  <%= stylesheet_link_tag "jqueryFileTree" %>
+  <style type="text/css">
+
+    #selected_directory {
+      margin-bottom: 2em;
+    }
+    #fieltree {
+
+    }
+    /*.demo{
+      background-color:#FFFFFF;
+      border-color:#BBBBBB #FFFFFF #FFFFFF #BBBBBB;
+      border-style:solid;
+      border-width:1px;
+      padding:5px;
+      width:200px;
+    }*/
+  </style>
+  <script type="text/javascript">
+    //<![CDATA[
+    $(document).ready(function(){
+
+      if (!window.opener)	{
+        alert("ERROR: Sorry, no link to main window... Closing");
+        window.close();
+      };
+
+      $('a[data-popup]').live('click', function(e) {
+        window.open($(this)[0].href, "skellr", "width=640,height=480,left=100,top=200");
+        e.preventDefault();
+      });
+
+      $('a[data-toggle]').live('click', function(e) {
+        $(this).siblings('div.files').toggleCheckboxes();
+        e.preventDefault();
+      });
+
+      $('a[data-select]').live('click', function(e) {
+        if ($(this).attr("data-select")=="true"){
+          $(this).siblings('div.files').checkCheckboxes();
+          $(this).attr("data-select","false");
+        } else {
+          $(this).siblings('div.files').unCheckCheckboxes();
+          $(this).attr("data-select","true");
+        }
+        e.preventDefault();
+      });
+
+      $('#fileTree').fileTree({
+        root: '',
+        script: '<%= get_tree_admin_refinery_filebrowsers_path %>',
+        multiFolder: true
+      }, function(file) {
+        alert(file);
+      });
+
+      $('#select').click(function(e) {
+        var selected = $("#fileTree input:checked").filter(':visible');
+        alert($(selected).length);
+        var multiselect=window.opener.document.getElementById("refinery_filebrowser_select_<%= @randomizer %>");
+        $(selected).each(function () {
+          $("<option/>").val($(this).attr("name")).text($(this).attr("name")).appendTo($(multiselect));
+        });
+        e.preventDefault();
+        close();
+      });
+
+
+
+    });
+    //]]>
+  </script>
+<% end %>
+<h2>Folder Tree:</h2>
+<%= link_to "#", :id =>"select" do %>
+  <%= image_tag "import.gif" %> Import selection
+<% end %>
+
+<pre id="selected_directory"></pre>
+
+<div id="fileTree" class="demo"></div>

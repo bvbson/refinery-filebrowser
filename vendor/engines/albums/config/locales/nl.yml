@@ -1,0 +1,19 @@
+nl:
+  plugins:
+    albums:
+      title: Albums
+  admin:
+    albums:
+      index:
+        create_new: Maak een nieuwe Album
+        reorder: Wijzig de volgorde van de Albums
+        reorder_done: Klaar met het wijzingen van de volgorde van de Albums
+        sorry_no_results: Helaas! Er zijn geen resultaten gevonden.
+        no_items_yet: Er zijn nog geen Albums. Druk op 'Maak een nieuwe Album' om de eerste aan te maken.
+      album:
+        view_live: Bekijk deze album op de website <br/><em>(opent een nieuw venster)</em>
+        edit: Bewerk deze album
+        delete: Verwijder deze album voor eeuwig
+  albums:
+    show:
+      other: Andere Albums

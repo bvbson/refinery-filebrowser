@@ -1,0 +1,19 @@
+nb:
+  plugins:
+    albums:
+      title: Albums
+  admin:
+    albums:
+      index:
+        create_new: Lag en ny Album
+        reorder: Endre rekkefølgen på Albums
+        reorder_done: Ferdig å endre rekkefølgen Albums
+        sorry_no_results: Beklager! Vi fant ikke noen resultater.
+        no_items_yet: Det er ingen Albums enda. Klikk på "Lag en ny Album" for å legge til din første album.
+      album:
+        view_live: Vis hvordan denne album ser ut offentlig <br/><em>(åpner i et nytt vindu)</em>
+        edit: Rediger denne album
+        delete: Fjern denne album permanent
+  albums:
+    show:
+      other: Andre Albums

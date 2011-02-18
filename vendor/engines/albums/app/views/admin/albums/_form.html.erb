@@ -1,0 +1,30 @@
+<% form_for [:admin, @album] do |f| -%>
+  <%= render :partial => "/shared/admin/error_messages", :locals => {
+    :object => @album,
+    :include_object_name => true
+  } %>
+  
+  <div class='field'>
+    <%= f.label :name -%>
+    <%= f.text_field :name, :class => 'larger widest' -%>
+  </div>
+
+
+<div class='field'>
+  <%= f.label "Image Cover" -%>
+  <%= skeller -%>
+</div>
+  
+  <div class='field'>
+    <%= f.label :cover -%>
+    <%= f.text_field :cover -%>
+  </div>
+  
+  <%= render :partial => "/shared/admin/form_actions",
+              :locals => {
+                :f => f,
+                :continue_editing => false,
+                :delete_title => t('admin.albums.album.delete'),
+                :delete_confirmation => t('shared.admin.delete.message', :title => @album.name)
+              } %>
+<% end -%>

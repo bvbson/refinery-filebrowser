@@ -5,12 +5,18 @@ require 'imagefly_app'
 require 'analysis/filebrowser_analyser'
 require 'data_storage/file_browser_data_store'
 require 'model/filebrowser'
+require 'helper/helpers'
+
 
 module Refinery
   module RefineryFilebrowsers
     class Engine < Rails::Engine
       initializer "static assets" do |app|
         app.middleware.insert_after ::ActionDispatch::Static, ::ActionDispatch::Static, "#{root}/public"
+      end
+
+      initializer "refinery-filebrowser-helpers" do
+        ActionView::Base.send :include, RefineryFilebrowsers::Helper
       end
 
       initializer 'refinery-filebrowser-with-dragonfly' do |app|

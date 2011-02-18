@@ -3,8 +3,6 @@ class RefineryFile < FileBrowserModel
   file_accessor :file
 
 
-  alias :data :file
-
   def initialize(file_path)
     @file = file_path
   end

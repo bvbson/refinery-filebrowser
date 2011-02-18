@@ -54,3 +54,5 @@ gem 'refinerycms-i18n',         '~> 0.9'
 # END USER DEFINED
 
 gem 'refinerycms-refinery_filebrowsers', '1.0', :path => 'vendor/engines', :require => 'refinery_filebrowsers'
+
+gem 'refinerycms-albums', '1.0', :path => 'vendor/engines', :require => 'albums'

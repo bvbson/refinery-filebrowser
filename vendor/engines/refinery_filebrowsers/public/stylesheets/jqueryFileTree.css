@@ -1,5 +1,5 @@
 .jqueryFileTree{
-    
+
 }
 
 #fileTree a {
@@ -29,7 +29,7 @@ UL.jqueryFileTree A {
 }
 
 UL.jqueryFileTree A:hover {
-	background: #BDF;
+	background: none;
 }
 
 .jqueryFileTree LI.expanded {
@@ -100,3 +100,19 @@ UL.jqueryFileTree A:hover {
 .jqueryFileTree LI.ext_xls { background: url(jqueryFileTreeImages/xls.png) left top no-repeat; }
 .jqueryFileTree LI.ext_xml { background: url(jqueryFileTreeImages/code.png) left top no-repeat; }
 .jqueryFileTree LI.ext_zip { background: url(jqueryFileTreeImages/zip.png) left top no-repeat; }
+
+
+/* Toogle Button Styles */
+a.toggle, a.select_all {
+    margin-left: 2em;
+}
+
+a.toggle img {
+    vertical-align: middle;
+    border: none;
+}
+
+a.select_all img {
+    vertical-align: middle;
+    border: none;
+}
